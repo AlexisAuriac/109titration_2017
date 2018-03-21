@@ -1,0 +1,15 @@
+#!/bin/perl
+
+use strict;
+use warnings;
+use load_file;
+
+my @file = load_file();
+
+if (!@file) {
+    exit 84;
+}
+
+#foreach my $line (@file) {
+#	print "$line->[0] ; $line->[1]\n";
+#}
