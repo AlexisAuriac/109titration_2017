@@ -3,6 +3,15 @@
 use strict;
 use warnings;
 
+sub help {
+    print << 'END_HELP';
+USAGE
+    ./109titration file
+DESCRIPTION
+    file    a csv file containing "vol;ph" lines
+END_HELP
+}
+
 sub is_decimal_number {
 	my ($nb, $line) = @_;
 
@@ -47,6 +56,10 @@ sub load_file {
     if (scalar @ARGV != 1) {
     	print STDERR "Invalid number of argument\n";
         return ();
+    }
+    if ($ARGV[0] eq "-h") {
+        help();
+        exit (0);
     }
     elsif (error_file($ARGV[0])) {
     	return ();
