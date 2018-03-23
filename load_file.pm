@@ -7,6 +7,7 @@ sub help {
     print << 'END_HELP';
 USAGE
     ./109titration file
+
 DESCRIPTION
     file    a csv file containing "vol;ph" lines
 END_HELP
@@ -69,7 +70,7 @@ sub load_file {
     chomp @content;
     foreach my $line (@content) {
     	my @tmp = split(";", $line);
-    	if (scalar @tmp != 2 || $line =~ tr/;/./ != 1) {
+    	if (scalar @tmp != 2 || $line =~ tr/;// != 1) {
     		print STDERR "Invalid line: '$line'\n";
     		return ();
     	}
@@ -79,6 +80,10 @@ sub load_file {
     		}
     	}
     	push @content2, \@tmp;
+    }
+    if (scalar @content2 < 5) {
+        print STDERR "Not enough values\n";
+        return ();
     }
     return @content2;
 }

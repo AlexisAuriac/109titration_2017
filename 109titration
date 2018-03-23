@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 use load_file;
+use derive;
+use estimate;
 
 my @file = load_file();
 
@@ -10,6 +12,31 @@ if (!@file) {
     exit 84;
 }
 
-#foreach my $line (@file) {
-#	print "$line->[0] ; $line->[1]\n";
-#}
+my @deriv_1 = derive_list(@file);
+
+print "Derivative:\n";
+foreach my $line (@deriv_1) {
+	print "volume: $line->[0] -> ", sprintf("%.2f", $line->[1]), "\n";
+}
+
+my $eq = get_equivalent_deriv(@deriv_1);
+print "\nEquivalent point at $deriv_1[$eq]->[0] ml\n\n";
+
+my @deriv_2 = derive_list(@deriv_1);
+
+print "Second derivative:\n";
+foreach my $line (@deriv_2) {
+	print "volume: $line->[0] -> ", sprintf("%.2f", $line->[1]), "\n";
+}
+--$eq;
+
+my @estimated = estimate(@deriv_2, $eq);
+
+print "\nSecond derivative estimated:\n";
+foreach my $line (@estimated) {
+	print "volume: $line->[0] -> ", sprintf("%.2f", $line->[1]), "\n";
+}
+
+$eq = get_equivalent_est(@estimated);
+
+print "\nEquivalent point at $estimated[$eq]->[0]\n";
