@@ -16,7 +16,7 @@ my @deriv_1 = derive_list(@file);
 
 print "Derivative:\n";
 foreach my $line (@deriv_1) {
-	print "volume: $line->[0] -> ", sprintf("%.2f", $line->[1]), "\n";
+	print "volume: $line->[0] ml -> ", sprintf("%.2f", $line->[1]), "\n";
 }
 
 my $eq = get_equivalent_deriv(@deriv_1);
@@ -26,7 +26,7 @@ my @deriv_2 = derive_list(@deriv_1);
 
 print "Second derivative:\n";
 foreach my $line (@deriv_2) {
-	print "volume: $line->[0] -> ", sprintf("%.2f", $line->[1]), "\n";
+	print "volume: $line->[0] ml -> ", sprintf("%.2f", $line->[1]), "\n";
 }
 --$eq;
 
@@ -34,9 +34,9 @@ my @estimated = estimate(@deriv_2, $eq);
 
 print "\nSecond derivative estimated:\n";
 foreach my $line (@estimated) {
-	print "volume: $line->[0] -> ", sprintf("%.2f", $line->[1]), "\n";
+	print "volume: $line->[0] ml -> ", sprintf("%.2f", $line->[1]), "\n";
 }
 
 $eq = get_equivalent_est(@estimated);
 
-print "\nEquivalent point at $estimated[$eq]->[0]\n";
+print "\nEquivalent point at $estimated[$eq]->[0] ml\n";
