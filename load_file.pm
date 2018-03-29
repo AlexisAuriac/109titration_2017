@@ -49,6 +49,16 @@ sub error_file {
     return 0;
 }
 
+sub sort_ref_array {
+    my (@ref_array) = @_;
+    my @sorted;
+
+    foreach my $ref (sort {$a->[0] <=> $b->[0]} @ref_array) {
+        push @sorted, $ref;
+    }
+    return @sorted;
+}
+
 sub load_file {
     my @content;
     my @content2;
@@ -60,7 +70,7 @@ sub load_file {
     }
     if ($ARGV[0] eq "-h") {
         help();
-        exit (0);
+        exit(0);
     }
     elsif (error_file($ARGV[0])) {
     	return ();
@@ -85,7 +95,7 @@ sub load_file {
         print STDERR "Not enough values\n";
         return ();
     }
-    return @content2;
+    return sort_ref_array(@content2);
 }
 
 1;

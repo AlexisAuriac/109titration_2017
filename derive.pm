@@ -19,11 +19,9 @@ sub derive_point {
 	my ($to_derive, $point1, $point2) = @_;
 	my @derivative;
 	my $ref;
-	my $h1 = abs($point1->[0] - $to_derive->[0]);
-	my $h2 = abs($point2->[0] - $to_derive->[0]);
 
 	push @derivative, $to_derive->[0];
-	push @derivative, ($point2->[1] - $point1->[1]) / ($h1 + $h2);
+	push @derivative, ($point2->[1] - $point1->[1]) / ($point2->[0] - $point1->[0]);
 	return \@derivative;
 }
 
