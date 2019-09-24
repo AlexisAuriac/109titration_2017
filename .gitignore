@@ -2,6 +2,9 @@
 *.a
 *.gc*
 *~
-#*#
+\#*\#
 vgcore.*
 *.csv
+
+*.sublime-workspace
+*.sublime-project
